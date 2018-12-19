@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block title_block %}User Detail{% endblock %}
+{% block menu_links %}{% endblock %}
+
+
+
+{% block content %}
+
+    <h1>{{ user.name }} {{ user.surname }}</h1>
+    <br>
+        <p>Статьи пользователя:</p>
+    <br>
+            {% for article in user.article.all %}
+
+                <div class="border border-primary p-3 col-9">
+
+                    <h3 class="d-inline">{{ article.title }} </h3>
+                    <p class="d-inline">({{ article.date }}): </p>
+                <div class="pt-2">{{ article.content }}</div>
+                </div>
+                <br>
+            {% endfor %}
+    <br>
+
+{% endblock %}

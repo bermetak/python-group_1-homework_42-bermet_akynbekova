@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+{% block title_block %}Article Detail{% endblock %}
+{% block menu_links %}{% endblock %}
+
+
+
+{% block content %}
+    <h1>{{ article.title }}</h1>
+    <p>
+        <a href="{% url 'user_detail' user.pk %}">
+            {{ article.autor.name }} {{ article.autor.surname }}
+        </a>, {{ article.date }}
+    </p>
+    <p>{{ article.content }}</p>
+
+        <br>
+        <h5>Оценки</h5>
+            {% for rating in article.ratings.all %}
+                <p>
+                    <a href="{% url 'user_detail' rating.autor.pk %}">
+                        {{ rating.autor.name }} {{ rating.autor.surname }}
+                    </a> - {{ rating.get_rating_display }}</p>
+            {% endfor %}
+    <br>
+    <h3>Комментарии</h3>
+
+    <div>
+    {% for comment in article.comments.all %}
+        <br>
+        <p>
+            <a href="{% url 'user_detail' comment.autor.pk %}">
+                {{ comment.autor.name }} {{ comment.autor.surname }}
+            </a> ({{ comment.date }}):</p>
+        <div class="border border-primary p-3 col-6">
+        <p>{{ comment.comment }}</p>
+        </div>
+    {% endfor %}
+    </div>
+
+
+{% endblock %}

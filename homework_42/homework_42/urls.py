@@ -25,5 +25,6 @@ urlpatterns = [
     path('users/<int:pk>', UserDetailView.as_view(), name='user_detail'),
     path('users/<int:pk>/favorites', FavoritListView.as_view(), name='user_favorit'),
     path('articles/create', ArticleCreateView.as_view(), name='article_create'),
+    path('articles/<int:pk>/update', ArticleUpdateView.as_view(), name='article_update'),
 
 ]

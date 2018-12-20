@@ -13,7 +13,11 @@
             {{ article.autor.name }} {{ article.autor.surname }}
         </a>, {{ article.date }}
     </p>
-    <p>{{ article.content }}</p>
+    <p>
+        {{ article.content }}
+        <br>
+        <a href="{% url 'article_update' article.pk %}">Редактировать</a>
+    </p>
 
         <br>
         <h5>Оценки</h5>
@@ -24,7 +28,7 @@
                     </a> - {{ rating.get_rating_display }}</p>
             {% endfor %}
     <br>
-    <h3>Комментарии</h3>
+    <h5>Комментарии</h5>
 
     <div>
     {% for comment in article.comments.all %}

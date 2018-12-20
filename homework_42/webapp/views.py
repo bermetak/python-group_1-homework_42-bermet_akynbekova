@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, TemplateView, View, RedirectView, FormView
+from django.views.generic import ListView, DetailView, CreateView, FormView, UpdateView
 from webapp.models import User, Article, Comment, Rating
 from django.urls import reverse_lazy
 from webapp.forms import ArticleSearchForm, ArticleCreateForm, ArticleUpdateForm
@@ -40,7 +40,7 @@ class ArticleCreateView(CreateView):
     form_class = ArticleCreateForm
     success_url = reverse_lazy('article_list')
 
-class ArticleUpdateView(CreateView):
+class ArticleUpdateView(UpdateView):
     model = Article
     template_name = 'article_update.html'
     form_class = ArticleUpdateForm

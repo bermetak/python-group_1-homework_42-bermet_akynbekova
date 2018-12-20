@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title_block %}Create Article{% endblock %}
+{% block menu_links %}{% endblock %}
+
+{% block header %}Создать статью{% endblock %}
+{% block content %}
+        <form action="{% url 'article_create' %}" method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+{% endblock %}

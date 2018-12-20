@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, FormView, UpdateView
 from webapp.models import User, Article, Comment, Rating
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from webapp.forms import ArticleSearchForm, ArticleCreateForm, ArticleUpdateForm, CommentCreateForm, CommentUpdateForm
 # Create your views here.
 
@@ -16,7 +16,7 @@ class ArticleListView(ListView, FormView):
         if not article_title:
             return Article.objects.all()
         else:
-            return Article.objects.filter(title__contains=article_title)
+            return Article.objects.filter(title__contains=article_title) | Article.objects.filter(content__contains=article_title)
 
 class ArticleDetailView(DetailView):
     model = Article
@@ -38,22 +38,31 @@ class ArticleCreateView(CreateView):
     model = Article
     template_name = 'article_create.html'
     form_class = ArticleCreateForm
-    success_url = reverse_lazy('article_list')
+
+    def get_success_url(self):
+        return reverse ('article_detail', kwargs={'pk': self.object.pk})
+
 
 class ArticleUpdateView(UpdateView):
     model = Article
     template_name = 'article_update.html'
     form_class = ArticleUpdateForm
-    success_url = reverse_lazy('article_list')
+
+    def get_success_url(self):
+        return reverse ('article_detail', kwargs={'pk': self.object.pk})
 
 class CommentCreateView(CreateView):
     model = Comment
     template_name = 'comment_create.html'
     form_class = CommentCreateForm
-    success_url = reverse_lazy('article_list')
+
+    def get_success_url(self):
+        return reverse ('article_detail', kwargs={'pk': self.object.article.pk})
 
 class CommentUpdateView(UpdateView):
     model = Comment
     template_name = 'comment_update.html'
     form_class = CommentUpdateForm
-    success_url = reverse_lazy('article_list')
+
+    def get_success_url(self):
+        return reverse ('article_detail', kwargs={'pk': self.object.article.pk})

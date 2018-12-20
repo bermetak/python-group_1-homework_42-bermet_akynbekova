@@ -20,3 +20,7 @@ class UserListView(ListView):
 class UserDetailView(DetailView):
     model = User
     template_name = 'user_detail.html'
+
+class FavoritListView(DetailView):
+    model = User
+    template_name = 'user_favorit.html'

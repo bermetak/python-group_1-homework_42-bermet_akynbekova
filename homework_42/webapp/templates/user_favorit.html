@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title_block %}User Favorit{% endblock %}
+{% block menu_links %}{% endblock %}
+
+{% block header %}Избранные статьи пользователя {{ user.name }} {{ user.surname }}{% endblock %}
+{% block content %}
+    {% for article in user.favorit.all %}
+
+        <a href="{% url 'article_detail' article.pk %}">
+            <h3>
+            {{ article.title }}
+            </h3>
+        </a>
+
+        <a href="{% url 'user_detail' article.autor.pk %}">
+        {{ article.autor.name }} {{ article.autor.surname }}
+        </a> ({{ article.date }}):
+        <p>{{ article.content }}</p>
+
+    {% endfor %}
+{% endblock %}

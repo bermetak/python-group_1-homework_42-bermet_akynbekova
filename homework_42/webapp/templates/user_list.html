@@ -4,12 +4,10 @@
 {% block title_block %}User List{% endblock %}
 {% block menu_links %}{% endblock %}
 
+{% block header %} Все пользователи{% endblock %}
 {% block content %}
 
-
-<div class="m-3">
     {% for user in user_list %}
-
         <a href="{% url 'user_detail' user.pk %}">
             <h4>
             {{ user.name }} {{ user.surname }}
@@ -18,8 +16,5 @@
         <p>{{ user.email }}</p>
 
     {% endfor %}
-</div>
-
-
 
 {% endblock %}

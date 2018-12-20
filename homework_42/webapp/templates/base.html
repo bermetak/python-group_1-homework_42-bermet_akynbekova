@@ -12,7 +12,8 @@
     <title>{% block title_block %}{% endblock %}</title>
 
 </head>
-<body><div class="container">
+<body>
+<div class="container">
 
     <nav class="navbar">
         <ul class="menu">
@@ -21,8 +22,14 @@
             {% block menu_links %}{% endblock %}
         </ul>
     </nav>
-    {% block content %}{% endblock %}
+    <h1 class="mt-3 mb-3">
+        {% block header %} {% endblock %}
+    </h1>
+    <div class="mb-3">
+        {% block content %}
 
+        {% endblock %}
     </div>
+</div>
 </body>
 </html>

@@ -4,30 +4,23 @@
 {% block title_block %}Article List{% endblock %}
 {% block menu_links %}{% endblock %}
 
+{% block header %}Все статьи {% endblock %}
+
 {% block content %}
-
-
-<div class="m-3">
     {% for article in article_list %}
 
         <a href="{% url 'article_detail' article.pk %}">
             <h3>
-            {{ article.title }}
+                {{ article.title }}
             </h3>
         </a>
 
         <a href="{% url 'user_detail' article.autor.pk %}">
-        {{ article.autor.name }} {{ article.autor.surname }}
+            {{ article.autor.name }} {{ article.autor.surname }}
         </a> ({{ article.date }}):
-        <p>{{ article.content }}</p>
-
-
-        <br>
-        <br>
+        <p>
+            {{ article.content }}
+        </p>
 
     {% endfor %}
-</div>
-
-
-
 {% endblock %}

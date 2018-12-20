@@ -17,6 +17,7 @@
         {{ article.content }}
         <br>
         <a href="{% url 'article_update' article.pk %}">Редактировать</a>
+
     </p>
 
         <br>
@@ -29,7 +30,7 @@
             {% endfor %}
     <br>
     <h5>Комментарии</h5>
-
+        <a href="{% url 'comment_create' %}">Добавить комментарий</a>
     <div>
     {% for comment in article.comments.all %}
         <br>
@@ -42,6 +43,8 @@
             {{ comment.comment }}
         </p>
         </div>
+        <a href="{% url 'comment_update' comment.pk %}">Редактировать</a>
+        <br>
     {% endfor %}
     </div>
 

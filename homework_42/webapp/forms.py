@@ -1,5 +1,5 @@
 from django import forms
-from webapp.models import Article
+from webapp.models import Article, Comment
 
 
 class ArticleSearchForm(forms.Form):
@@ -14,3 +14,13 @@ class ArticleUpdateForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = {'title', 'content'}
+
+class CommentCreateForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = {'article', 'autor', 'comment'}
+
+class CommentUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = {'comment'}

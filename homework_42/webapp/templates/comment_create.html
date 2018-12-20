@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title_block %}Create Commentary{% endblock %}
+{% block menu_links %}{% endblock %}
+
+{% block header %}Создать комментарий к статье{% endblock %}
+{% block content %}
+        <form action="{% url 'comment_create' %}" method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Готово</button>
+        </form>
+{% endblock %}
